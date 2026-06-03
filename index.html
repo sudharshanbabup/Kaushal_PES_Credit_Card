@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Attention-Autoencoder Fraud Detection - Thesis Demo</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Background glow elements -->
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+    <div class="bg-glow glow-3"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="fa-solid fa-shield-halved logo-icon"></i>
+                <span>PES Research</span>
+            </a>
+            <div class="nav-links">
+                <a href="#overview"><i class="fa-solid fa-book-open"></i> Overview</a>
+                <a href="#diagram"><i class="fa-solid fa-network-wired"></i> Architecture</a>
+                <a href="#results"><i class="fa-solid fa-chart-line"></i> Results</a>
+                <a href="#simulator"><i class="fa-solid fa-gamepad"></i> Simulator Playground</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-content">
+
+        <!-- Hero Section -->
+        <header id="overview" class="hero-section">
+            <div class="hero-badge"><span class="badge-dot"></span> Master's Thesis Project</div>
+            <h1 class="hero-title">Hybrid Attention-Autoencoder Learning for Cost-Aware Explainable Credit Card Fraud Detection</h1>
+            <p class="hero-subtitle">
+                An advanced dual-branch framework unifying supervised feature interactions (AADNN) and unsupervised anomaly manifolds (Autoencoder) with dynamic threshold optimization and post-hoc SHAP attribution.
+            </p>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Author</span>
+                    <span class="meta-value">Kaushal</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Advisor</span>
+                    <span class="meta-value">Dr. Ramesh Prakash Guledgudd</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Department</span>
+                    <span class="meta-value">CSE, PES University</span>
+                </div>
+            </div>
+            
+            <!-- Quick Stats Cards -->
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-chart-area"></i></div>
+                    <div class="stat-num">0.965</div>
+                    <div class="stat-label">Cross-Seed ROC-AUC</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-mask"></i></div>
+                    <div class="stat-num">46.9%</div>
+                    <div class="stat-label">Novel Fraud Detection</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="stat-num">&lt;0.01 ms</div>
+                    <div class="stat-label">Inference Latency</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-coins"></i></div>
+                    <div class="stat-num">Optimal</div>
+                    <div class="stat-label">Cost-Sensitive Loss</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Section 2: Architecture & Block Diagram -->
+        <section id="diagram" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Framework Architecture</h2>
+                <p class="section-desc">Click on any module block in the diagram to inspect its mathematical formulation, design decisions, and parameter settings.</p>
+            </div>
+
+            <!-- Block Diagram Container -->
+            <div class="diagram-container card">
+                <div class="diagram-canvas">
+                    <!-- SVG connection lines -->
+                    <svg class="connection-svg">
+                        <defs>
+                            <linearGradient id="flow-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3" />
+                                <stop offset="50%" stop-color="#10b981" />
+                                <stop offset="100%" stop-color="#14b8a6" />
+                            </linearGradient>
+                            <linearGradient id="flow-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.3" />
+                                <stop offset="50%" stop-color="#fdae61" />
+                                <stop offset="100%" stop-color="#14b8a6" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Paths connecting blocks -->
+                        <!-- Input to Feature Engineering -->
+                        <path d="M 120 180 L 160 180" class="flow-line" />
+                        <!-- Feature Eng to AADNN -->
+                        <path d="M 280 180 L 300 180 L 300 110 L 330 110" class="flow-line blue-path" />
+                        <!-- Feature Eng to Autoencoder -->
+                        <path d="M 280 180 L 300 180 L 300 250 L 330 250" class="flow-line orange-path" />
+                        <!-- AADNN to Fusion -->
+                        <path d="M 450 110 L 490 110 L 490 180 L 510 180" class="flow-line" />
+                        <!-- Autoencoder to Fusion -->
+                        <path d="M 450 250 L 490 250 L 490 180 L 510 180" class="flow-line" />
+                        <!-- Fusion to Threshold/Decision -->
+                        <path d="M 630 180 L 660 180" class="flow-line" />
+                        <!-- Threshold to Decision Output -->
+                        <path d="M 780 180 L 810 180" class="flow-line" />
+                    </svg>
+
+                    <!-- Interactive Blocks -->
+                    <!-- Block 1: Raw Input -->
+                    <div class="diagram-block block-input" data-module="input" style="left: 10px; top: 130px;">
+                        <div class="block-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                        <div class="block-title">Raw Transaction</div>
+                        <div class="block-detail">Time, Amount, V1-V28</div>
+                    </div>
+
+                    <!-- Block 2: Feature Engineering -->
+                    <div class="diagram-block block-feature" data-module="feature" style="left: 160px; top: 130px;">
+                        <div class="block-icon"><i class="fa-solid fa-gears"></i></div>
+                        <div class="block-title">Feature Engineering</div>
+                        <div class="block-detail">38 Scaled & Engineered Features</div>
+                    </div>
+
+                    <!-- Block 3a: Supervised branch -->
+                    <div class="diagram-block block-model-supervised" data-module="aadnn" style="left: 330px; top: 60px;">
+                        <div class="block-icon"><i class="fa-solid fa-brain"></i></div>
+                        <div class="block-title">AADNN Branch</div>
+                        <div class="block-detail">Supervised MLP Classifier + Attention</div>
+                    </div>
+
+                    <!-- Block 3b: Unsupervised branch -->
+                    <div class="diagram-block block-model-unsupervised" data-module="ae" style="left: 330px; top: 200px;">
+                        <div class="block-icon"><i class="fa-solid fa-compress"></i></div>
+                        <div class="block-title">Autoencoder Branch</div>
+                        <div class="block-detail">Unsupervised Reconstruction Error</div>
+                    </div>
+
+                    <!-- Block 4: Hybrid Fusion -->
+                    <div class="diagram-block block-fusion" data-module="fusion" style="left: 510px; top: 130px;">
+                        <div class="block-icon"><i class="fa-solid fa-shuffle"></i></div>
+                        <div class="block-title">Risk Scoring Fusion</div>
+                        <div class="block-detail">s_hybrid = α* p_nn + (1-α*) s_ae</div>
+                    </div>
+
+                    <!-- Block 5: Threshold / Explanation -->
+                    <div class="diagram-block block-threshold" data-module="threshold" style="left: 660px; top: 130px;">
+                        <div class="block-icon"><i class="fa-solid fa-sliders"></i></div>
+                        <div class="block-title">Dynamic Threshold</div>
+                        <div class="block-detail">Hour-based Dynamic τ_t + SHAP</div>
+                    </div>
+
+                    <!-- Block 6: Decision Output -->
+                    <div class="diagram-block block-output" data-module="output" style="left: 810px; top: 130px;">
+                        <div class="block-icon"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="block-title">Classification</div>
+                        <div class="block-detail">Fraud Verdict + SHAP Plot</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Results & Tables -->
+        <section id="results" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Thesis Results & Evaluation</h2>
+                <p class="section-desc">Select a category below to explore the empirical tables, validation runs, and publication-ready figures generated from the experiments.</p>
+            </div>
+
+            <div class="results-layout">
+                <!-- Navigation Tabs -->
+                <div class="tabs-nav card">
+                    <button class="tab-btn active" data-tab="tab-metrics"><i class="fa-solid fa-table-list"></i> Summary Tables</button>
+                    <button class="tab-btn" data-tab="tab-curves"><i class="fa-solid fa-bezier-curve"></i> Classification Curves</button>
+                    <button class="tab-btn" data-tab="tab-anomaly"><i class="fa-solid fa-chart-bar"></i> Anomaly & Novelty</button>
+                    <button class="tab-btn" data-tab="tab-explain"><i class="fa-solid fa-magnifying-glass-chart"></i> Explainability & Cost</button>
+                </div>
+
+                <!-- Tab Content Containers -->
+                <div class="tabs-content">
+                    
+                    <!-- Tab 1: Summary Tables -->
+                    <div class="tab-pane active" id="tab-metrics">
+                        <!-- Summary Table 1 -->
+                        <div class="card table-container">
+                            <h3 class="card-title"><i class="fa-solid fa-ranking-star text-blue"></i> Overall Performance Comparison (3 Seeds)</h3>
+                            <table class="results-table">
+                                <thead>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>ROC-AUC</th>
+                                        <th>PR-AUC</th>
+                                        <th>F1 Score</th>
+                                        <th>Recall</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Random Forest</td>
+                                        <td>.959 ± .003</td>
+                                        <td><strong>.879 ± .009</strong></td>
+                                        <td><strong>.895 ± .014</strong></td>
+                                        <td>0.833</td>
+                                    </tr>
+                                    <tr>
+                                        <td>XGBoost</td>
+                                        <td>.937 ± .007</td>
+                                        <td>.859 ± .007</td>
+                                        <td>.897 ± .013</td>
+                                        <td>0.841</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AADNN (Supervised)</td>
+                                        <td>.930 ± .018</td>
+                                        <td>.839 ± .018</td>
+                                        <td>.871 ± .005</td>
+                                        <td>0.799</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Autoencoder (Unsupervised)</td>
+                                        <td>.958 ± .003</td>
+                                        <td>.507 ± .146</td>
+                                        <td>.662 ± .099</td>
+                                        <td>0.748</td>
+                                    </tr>
+                                    <tr class="highlight-row">
+                                        <td><strong>Hybrid (Proposed, Static)</strong></td>
+                                        <td><strong>.965 ± .004</strong></td>
+                                        <td>.846 ± .018</td>
+                                        <td>.871 ± .007</td>
+                                        <td>0.804</td>
+                                    </tr>
+                                    <tr class="highlight-row-accent">
+                                        <td><strong>Hybrid + Dynamic Threshold</strong></td>
+                                        <td><strong>.965 ± .004</strong></td>
+                                        <td>.846 ± .018</td>
+                                        <td><strong>.886</strong></td>
+                                        <td><strong>0.819</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="table-caption">
+                                <i class="fa-solid fa-circle-info"></i> The proposed Hybrid model achieves the highest overall ROC-AUC. Applying Dynamic Thresholding recovers F1 and Recall, rivaling supervised ensembles while offering unique protection against unseen fraud.
+                            </div>
+                        </div>
+
+                        <!-- Summary Table 2 -->
+                        <div class="card table-container" style="margin-top: 20px;">
+                            <h3 class="card-title"><i class="fa-solid fa-virus-slash text-orange"></i> Novel (Unseen) Fraud Detection Rates</h3>
+                            <table class="results-table">
+                                <thead>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>Supervised?</th>
+                                        <th>Detection Rate (%)</th>
+                                        <th>Vulnerability to Novel Attacks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Random Forest</td>
+                                        <td>Yes</td>
+                                        <td>0.0%</td>
+                                        <td class="risk-high"><i class="fa-solid fa-triangle-exclamation"></i> Extremely Vulnerable</td>
+                                    </tr>
+                                    <tr>
+                                        <td>XGBoost</td>
+                                        <td>Yes</td>
+                                        <td>12.4%</td>
+                                        <td class="risk-high"><i class="fa-solid fa-triangle-exclamation"></i> Highly Vulnerable</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AADNN Branch</td>
+                                        <td>Yes</td>
+                                        <td>47.8%</td>
+                                        <td class="risk-med">Moderate</td>
+                                    </tr>
+                                    <tr class="highlight-row">
+                                        <td>Autoencoder Branch</td>
+                                        <td>No (Anomaly)</td>
+                                        <td><strong>61.9%</strong></td>
+                                        <td class="risk-low"><i class="fa-solid fa-shield"></i> Highly Resilient</td>
+                                    </tr>
+                                    <tr class="highlight-row-accent">
+                                        <td><strong>Hybrid Framework (Proposed)</strong></td>
+                                        <td><strong>Hybrid</strong></td>
+                                        <td><strong>46.9%</strong></td>
+                                        <td class="risk-low"><i class="fa-solid fa-shield"></i> Resilient Balanced</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="table-caption">
+                                <i class="fa-solid fa-circle-info"></i> Traditional supervised models (RF and XGBoost) fail completely when fraud patterns shift. The autoencoder branch allows the Hybrid model to catch anomalies and novel fraud types successfully.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Classification Curves -->
+                    <div class="tab-pane" id="tab-curves">
+                        <div class="figures-grid">
+                            <div class="figure-card card" data-fig="fig01_roc.png">
+                                <div class="fig-img-container">
+                                    <img src="figures/fig01_roc.png" alt="Figure 1: ROC Curves">
+                                    <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i> Expand</div>
+                                </div>
+                                <div class="fig-title">Figure 1: ROC Curves Comparison</div>
+                                <div class="fig-desc">Demonstrates the true positive rate vs. false positive rate. The Hybrid model (black) maintains the highest curve profile.</div>
+                            </div>
+                            <div class="figure-card card" data-fig="fig02_pr.png">
+                                <div class="fig-img-container">
+                                    <img src="figures/fig02_pr.png" alt="Figure 2: PR Curves">
+                                    <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i> Expand</div>
+                                </div>
+                                <div class="fig-title">Figure 2: Precision-Recall Curves</div>
+                                <div class="fig-desc">Illustrates trade-offs in highly imbalanced dataset distributions, showing Area under PR curves.</div>
+                            </div>
+                            <div class="figure-card card" data-fig="fig03_alpha.png">
+                                <div class="fig-img-container">
+                                    <img src="figures/fig03_alpha.png" alt="Figure 3: Alpha Optimization">
+                                    <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i> Expand</div>
+                                </div>
+                                <div class="fig-title">Figure 3: Fusion Weight Alpha (α) Optimization</div>
+                                <div class="fig-desc">Shows validation grid search maximizing ROC-AUC. Peak performance occurs at α* = 0.37.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Anomaly & Novelty -->
+                    <div class="tab-pane" id="tab-anomaly">
+                        <div class="figures-grid">
+                            <div class="figure-card card" data-fig="fig04_ae_dist.png">
+                                <div class="fig-img-container">
+                                    <img src="figures/fig04_ae_dist.png" alt="Figure 4: Reconstruction Error Dist">
+                                    <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i> Expand</div>
+                                </div>
+                                <div class="fig-title">Figure 4: Autoencoder Error Density</div>
+                                <div class="fig-desc">Histogram and KDE density plots. Legitimate transactions (blue) cluster at low MSE, while fraud (red) diverges.</div>
+                            </div>
+                            <div class="figure-card card" data-fig="fig10_novel.png">
+                                <div class="fig-img-container">
+                                    <img src="figures/fig10_novel.png" alt="Figure 10: Novel Fraud Rates">
+                                    <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i> Expand</div>
+                                </div>
+                                <div class="fig-title">Figure 10: Novel Fraud Detection rates</div>
+                                <div class="fig-desc">Proves the fundamental flaw of supervised models (RF: 0.0% detection) against unseen fraud vectors, solved by the Hybrid.</div>
+                            </div>
+                            <div class="figure-card card" data-fig="fig11_robust.png">
+                                <div class="fig-img-container">
+                                    <img src="figures/fig11_robust.png" alt="Figure 11: Noise Robustness">
+                                    <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i> Expand</div>
+                                </div>
+                                <div class="fig-title">Figure 11: Robustness Under Input Noise</div>
+                                <div class="fig-desc">Shows AUC stability under Gaussian noise injection. The Hybrid (black) shows the highest stability (tightest variance band).</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Explainability & Cost -->
+                    <div class="tab-pane" id="tab-explain">
+                        <div class="figures-grid">
+                            <div class="figure-card card" data-fig="fig07_shap.png">
+                                <div class="fig-img-container">
+                                    <img src="figures/fig07_shap.png" alt="Figure 7: SHAP Importance">
+                                    <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i> Expand</div>
+                                </div>
+                                <div class="fig-title">Figure 7: Mean Absolute SHAP Importance</div>
+                                <div class="fig-desc">Ranks global feature contributions. Engineered Feature Energy (coordinated V deviation) dominates (3.30 SHAP).</div>
+                            </div>
+                            <div class="figure-card card" data-fig="fig08_shap_summary.png">
+                                <div class="fig-img-container">
+                                    <img src="figures/fig08_shap_summary.png" alt="Figure 8: SHAP Summary">
+                                    <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i> Expand</div>
+                                </div>
+                                <div class="fig-title">Figure 8: SHAP Summary Plot</div>
+                                <div class="fig-desc">Dot distribution plots. Demonstrates how high/low values of top features directional impact the prediction risk.</div>
+                            </div>
+                            <div class="figure-card card" data-fig="fig12_cost.png">
+                                <div class="fig-img-container">
+                                    <img src="figures/fig12_cost.png" alt="Figure 12: Cost Sensitivity">
+                                    <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i> Expand</div>
+                                </div>
+                                <div class="fig-title">Figure 12: Cost Sensitivity Tradeoffs</div>
+                                <div class="fig-desc">Compares total dollar financial loss across false negative multipliers. The Hybrid model remains highly competitive.</div>
+                            </div>
+                            <div class="figure-card card" data-fig="fig05_dynamic.png">
+                                <div class="fig-img-container">
+                                    <img src="figures/fig05_dynamic.png" alt="Figure 5: Dynamic Thresholds">
+                                    <div class="zoom-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i> Expand</div>
+                                </div>
+                                <div class="fig-title">Figure 5: Dynamic Thresholding Adaptations</div>
+                                <div class="fig-desc">Visualizes active thresholds adjusting per temporal window in response to fluctuating fraud rates.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Live Simulator Sandbox -->
+        <section id="simulator" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Interactive Transaction Playground</h2>
+                <p class="section-desc">Adjust the transaction sliders to simulate credit card charges. The browser will run the hybrid scoring engine and show real-time SHAP attributions and classification verdicts.</p>
+            </div>
+
+            <div class="simulator-container">
+                
+                <!-- Left panel: Sliders / Inputs -->
+                <div class="card sim-inputs">
+                    <h3 class="card-title"><i class="fa-solid fa-sliders text-teal"></i> Transaction Parameters</h3>
+                    
+                    <!-- Slider 1: Amount -->
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label for="input-amount">Transaction Amount ($)</label>
+                            <span id="val-amount" class="slider-value">$150.00</span>
+                        </div>
+                        <input type="range" id="input-amount" min="5" max="5000" step="5" value="150" class="custom-slider">
+                        <p class="slider-caption">Larger amounts increase the cost of a False Negative (missed fraud).</p>
+                    </div>
+
+                    <!-- Slider 2: V_magnitude (Feature Energy) -->
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label for="input-energy">Feature Energy (PCA Coordinated Deviation)</label>
+                            <span id="val-energy" class="slider-value">1.50</span>
+                        </div>
+                        <input type="range" id="input-energy" min="0.5" max="25" step="0.1" value="1.5" class="custom-slider">
+                        <p class="slider-caption">Measures deviation across V1-V28. High energy suggests anomaly patterns.</p>
+                    </div>
+
+                    <!-- Slider 3: V3 Component -->
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label for="input-v3">PCA Component V3 (Supervised Signal)</label>
+                            <span id="val-v3" class="slider-value">0.80</span>
+                        </div>
+                        <input type="range" id="input-v3" min="-6" max="4" step="0.1" value="0.8" class="custom-slider">
+                        <p class="slider-caption">V3 is highly correlated with historical fraud. Negative values signify high fraud risk.</p>
+                    </div>
+
+                    <!-- Slider 4: Hour of Day -->
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label for="input-hour">Time of Transaction (Hour)</label>
+                            <span id="val-hour" class="slider-value">14:00 (Day)</span>
+                        </div>
+                        <input type="range" id="input-hour" min="0" max="23" step="1" value="14" class="custom-slider">
+                        <p class="slider-caption">Night-time charges (22:00 - 05:00) shift risk weight and dynamic thresholds.</p>
+                    </div>
+
+                    <!-- Slider 5: Autoencoder Reconstruction Error -->
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <label for="input-ae">Autoencoder Reconstruction Error (s_ae)</label>
+                            <span id="val-ae" class="slider-value">0.05</span>
+                        </div>
+                        <input type="range" id="input-ae" min="0.0" max="1.0" step="0.01" value="0.05" class="custom-slider">
+                        <p class="slider-caption">Manually adjusts the anomaly branch. High values indicate structurally unseen fraud.</p>
+                    </div>
+                </div>
+
+                <!-- Right panel: Dashboard Outputs -->
+                <div class="sim-outputs">
+                    
+                    <!-- Verdict & Risk Gauges -->
+                    <div class="card verdict-card">
+                        <h3 class="card-title"><i class="fa-solid fa-gauge-high text-blue"></i> Live Classifier Verdict</h3>
+                        <div class="verdict-layout">
+                            <div class="gauge-container">
+                                <svg class="gauge-svg" viewBox="0 0 100 50">
+                                    <path d="M 10 50 A 40 40 0 0 1 90 50" class="gauge-track" />
+                                    <path d="M 10 50 A 40 40 0 0 1 90 50" class="gauge-fill" />
+                                    <!-- Needle -->
+                                    <line x1="50" y1="50" x2="50" y2="15" class="gauge-needle" />
+                                    <circle cx="50" cy="50" r="4" class="gauge-center" />
+                                </svg>
+                                <div class="gauge-label">
+                                    <span class="gauge-percent" id="hybrid-score-percent">5.0%</span>
+                                    <span class="gauge-sub">Risk Score</span>
+                                </div>
+                            </div>
+                            
+                            <div class="verdict-banner legit" id="verdict-alert">
+                                <span class="verdict-icon"><i class="fa-solid fa-check-circle"></i></span>
+                                <span class="verdict-text" id="verdict-title">Legitimate Transaction</span>
+                                <span class="verdict-desc" id="verdict-description">Score falls safely below the dynamic threshold.</span>
+                            </div>
+                        </div>
+
+                        <!-- Scoring Breakdown -->
+                        <div class="scores-breakdown">
+                            <div class="score-pill">
+                                <span class="pill-title">Supervised (AADNN)</span>
+                                <span class="pill-val" id="score-aadnn">0.03</span>
+                            </div>
+                            <div class="score-pill">
+                                <span class="pill-title">Unsupervised (AE)</span>
+                                <span class="pill-val" id="score-ae">0.05</span>
+                            </div>
+                            <div class="score-pill highlight-pill">
+                                <span class="pill-title">Hybrid Score (s_hybrid)</span>
+                                <span class="pill-val" id="score-hybrid">0.05</span>
+                            </div>
+                            <div class="score-pill">
+                                <span class="pill-title">Active Threshold (τ_t)</span>
+                                <span class="pill-val" id="active-threshold">0.55</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Local SHAP explainability -->
+                    <div class="card shap-card">
+                        <h3 class="card-title"><i class="fa-solid fa-magnifying-glass text-orange"></i> Local Explanation (Live SHAP Attributions)</h3>
+                        <p class="section-desc" style="margin-bottom: 12px;">Shows how each feature directional shifted the final verdict. Red bars increase risk; blue bars decrease risk.</p>
+                        <div class="shap-chart" id="shap-bars-container">
+                            <!-- JS generates bars here -->
+                        </div>
+                        <div class="shap-summary-text" id="human-explanation">
+                            The transaction of $150.00 is classified as legitimate because its parameters match typical spending habits and show zero abnormal deviations.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>© 2026 Kaushal. All Rights Reserved. CSE Department, PES University, Bengaluru, India.</p>
+        <p>Built as a final thesis presentation demo. Modular code and pipeline are fully documented.</p>
+    </footer>
+
+    <!-- Lightbox for figures -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close"><i class="fa-solid fa-xmark"></i></span>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <!-- Modals for block diagram -->
+    <div id="block-modal" class="modal">
+        <div class="modal-content card">
+            <span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive script -->
+    <script src="script.js"></script>
+</body>
+</html>
