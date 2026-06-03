@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Large dataset files
+*.csv
+creditcard.csv
+
+# Cache files and models
+cache/
+*.pkl
+results_codes/cache/
+real_datasets/cache/
+
+# Local configuration files
+.env
